@@ -3,14 +3,15 @@ select * from menu
 select * from sales
 
 
-
+**Question 1**
 -- 1. What is the total amount each customer spent at the restaurant?
-
+```sql
 SELECT SUM(price) AS Total_Amt_spend, customer_id
 from sales
 join menu
 on sales.product_id = menu.product_id
 group by customer_id
+```
 
 -- 2. How many days has each customer visited the restaurant?
 
