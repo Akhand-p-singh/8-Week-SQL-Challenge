@@ -15,7 +15,7 @@ This is 8 Week SQL Challenge by Danny Ma.
 
 ## Case Study 1: Danny's Dinner
 <p align="center">
-<img src="IMAGE LINK" align="center" width="400" height="400" >
+<img src="https://github.com/Akhand-p-singh/8-Week-SQL-Challenge/blob/master/Images/Case%20Study%201.png" align="center" width="400" height="400" >
 
 ## Introduction
 Owner loves Japanese food so in the beginning of 2021, he decides to embark upon a risky venture and opens up a cute little restaurant that sells his 3 favourite foods: sushi, curry and ramen.
@@ -32,7 +32,7 @@ You can get the SQL Schema and Case Study [from here](https://8weeksqlchallenge.
 ## Case Study #2 - Pizza Runner
   
 <p align="center">
-<img src="IMAGE LINK" align="center" width="400" height="400" >
+<img src="https://github.com/Akhand-p-singh/8-Week-SQL-Challenge/blob/master/Images/Case%20Study%202.png" align="center" width="400" height="400" >
   
  Danny was sold on the idea, but he knew that pizza alone was not going to help him get seed funding to expand his new Pizza Empire - so he had one more genius idea to combine with it - he was going to Uberize it - and so Pizza Runner was launched!
 
@@ -45,7 +45,7 @@ You can get the SQL Schema and Case Study [from here](https://8weeksqlchallenge.
 ## Case Study #3 - Foodie-Fi
   
 <p align="center">
-<img src="IMAGE LINK" align="center" width="400" height="400" > 
+<img src="https://github.com/Akhand-p-singh/8-Week-SQL-Challenge/blob/master/Images/Case%20Study%203.png" align="center" width="400" height="400" > 
   
 Subscription based businesses are super popular and Danny realised that there was a large gap in the market - he wanted to create a new streaming service that only had food related content - something like Netflix but with only cooking shows!
 
@@ -60,7 +60,7 @@ You can get the SQL Schema and Case Study [from here](https://8weeksqlchallenge.
 ## Case Study #4 - Data Bank 
  
 <p align="center">
-<img src="IMAGE LINK" align="center" width="400" height="400" > 
+<img src="https://github.com/Akhand-p-singh/8-Week-SQL-Challenge/blob/master/Images/Case%20Study%204.png" align="center" width="400" height="400" > 
   
  There is a new innovation in the financial industry called Neo-Banks: new aged digital only banks without physical branches.
 
@@ -81,7 +81,7 @@ You can get the SQL Schema and Case Study [from here](https://8weeksqlchallenge.
 ## Case Study #5 - Data Mart
   
 <p align="center">
-<img src="IMAGE LINK" align="center" width="400" height="400" >
+<img src="https://github.com/Akhand-p-singh/8-Week-SQL-Challenge/blob/master/Images/Case%20Study%205.png" align="center" width="400" height="400" >
   
 Data Mart is Danny’s latest venture and after running international operations for his online supermarket that specialises in fresh produce - Danny is asking for your support to analyse his sales performance.
 
@@ -102,7 +102,7 @@ You can get the SQL Schema and Case Study [from here](https://8weeksqlchallenge.
 ## Case Study #6 - Clique Bait
   
 <p align="center">
-<img src="IMAGE LINK" align="center" width="400" height="400" >
+<img src="https://github.com/Akhand-p-singh/8-Week-SQL-Challenge/blob/master/Images/Case%20Study%206.png" align="center" width="400" height="400" >
   
 Clique Bait is not like your regular online seafood store - the founder and CEO Danny, was also a part of a digital data analytics team and wanted to expand his knowledge into the seafood industry!
 
@@ -116,7 +116,7 @@ You can get the SQL Schema and Case Study [from here](https://8weeksqlchallenge.
 ## Case Study #7 - Balanced Tree Clothing Co.
   
 <p align="center">
-<img src="IMAGE LINK" align="center" width="400" height="400" >
+<img src="https://github.com/Akhand-p-singh/8-Week-SQL-Challenge/blob/master/Images/Case%20Study%207.png" align="center" width="400" height="400" >
   
 Balanced Tree Clothing Company prides themselves on providing an optimised range of clothing and lifestyle wear for the modern adventurer!
 
@@ -129,7 +129,7 @@ You can get the SQL Schema and Case Study [from here](https://8weeksqlchallenge.
 ## Case Study #8 - Fresh Segments  
   
 <p align="center">
-<img src="IMAGE LINK" align="center" width="400" height="400" >
+<img src="https://github.com/Akhand-p-singh/8-Week-SQL-Challenge/blob/master/Images/Case%20Study%208.png" align="center" width="400" height="400" >
   
 Danny created Fresh Segments, a digital marketing agency that helps other businesses analyse trends in online ad click behaviour for their unique customer base.
 
