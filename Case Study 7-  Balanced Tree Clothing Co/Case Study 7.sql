@@ -2,32 +2,6 @@ SELECT * from product_details
 SELECT * from product_hierarchy
 SELECT * from product_prices
 SELECT * from sales
-
-                                 -- C. Product Analysis
--- 1. What are the top 3 products by total revenue before discount?
-SELECT Top 3 pd.product_name, SUM(s.qty * s.price ) as revenue
-from product_details AS pd
-join sales s
-on  pd.product_id = s.prod_id
-group by pd.product_name
-order by revenue desc
-
--- 2. What is the total quantity, revenue and discount for each segment?
-Select pd.segment_name, sum(s.qty) AS total_qunt, SUM(s.qty* s.price ) AS total_revenue, SUM(s.qty* s.price * s.discount)  As revenue_before_discount
-from product_details AS pd
-join sales AS s
-on pd.product_id = s.prod_id
-group by segment_name
-
--- 3. What is the top selling product for each segment?
--- 4. What is the total quantity, revenue and discount for each category?
--- 5. What is the top selling product for each category?
--- 6. What is the percentage split of revenue by product for each segment?
--- 7. What is the percentage split of revenue by segment for each category?
--- 8. What is the percentage split of total revenue by category?
--- 9. What is the total transaction “penetration” for each product? (hint: penetration = number of transactions where at least 1 quantity of a product was purchased divided by total number of transactions)
--- 10. What is the most common combination of at least 1 quantity of any 3 products in a 1 single transaction?
-
                              
 							   -- A. High Level Sales Analysis
 -- 1. What was the total quantity sold for all products?
@@ -88,3 +62,112 @@ group by member, txn_id
 SELECT member, CAST(AVG(1.0*total_transaction) as decimal(10,2))
 from revenue 
 group by member
+
+
+                                   -- C. Product Analysis
+-- 1. What are the top 3 products by total revenue before discount?
+SELECT Top 3 pd.product_name, SUM(s.qty * s.price ) as revenue
+from product_details AS pd
+join sales s
+on  pd.product_id = s.prod_id
+group by pd.product_name
+order by revenue desc
+
+-- 2. What is the total quantity, revenue and discount for each segment?
+Select pd.segment_name, sum(s.qty) AS total_qunt, SUM(s.qty* s.price ) AS total_revenue, SUM(s.qty* s.price * s.discount)  As revenue_before_discount
+from product_details AS pd
+join sales AS s
+on pd.product_id = s.prod_id
+group by segment_name
+
+-- 3. What is the top selling product for each segment?
+WITH ranking AS ( SELECT segment_name, product_name,  sum(s.qty) as total, DENSE_RANK() OVER(partition by segment_name order by sum(s.qty) desc) as rnk
+from product_details AS pd
+join sales AS s
+on pd.product_id   = s.prod_id 
+group by segment_name, product_name
+)
+SELECT segment_name, product_name, total
+from ranking
+where rnk = 1
+
+
+-- 4. What is the total quantity, revenue and discount for each category?
+SELECT pd.category_name, sum(s.qty) as Total_quantity, sum(s.qty * s.price) As revenue, sum(s.qty * s.price * s.discount/100 ) as total_discount
+from product_details AS pd
+join sales AS s
+on pd.product_id = s.prod_id
+group by pd.category_name
+
+-- 5. What is the top selling product for each category?
+WITH Ranking As ( 
+SELECT category_name, product_name, sum(s.qty) as total_prod, DENSE_RANK() over(partition by category_name order by sum(s.qty) desc) as rnk
+from product_details AS pd
+join sales AS s
+on pd.product_id = s.prod_id
+group by category_name, product_name
+ )
+SELECT category_name, product_name, total_prod
+from ranking
+where rnk =1
+
+
+-- 6. What is the percentage split of revenue by product for each segment?
+With product_segment AS 
+( 
+SELECT segment_name,product_name,  sum(s.qty * s.price) AS revenue
+from product_details AS pd
+join sales AS s
+on pd.product_id = s.prod_id
+group by segment_name,product_name
+)
+SELECT segment_name,product_name, 
+       CAST ( 100.0 * revenue/ SUM(revenue) over(partition by segment_name) AS decimal (10,2)) Product_segement_pct
+from product_segment
+
+
+-- 7. What is the percentage split of revenue by segment for each category?
+With product_segment AS 
+( 
+SELECT segment_name,
+       category_name,
+	   sum(s.qty * s.price) AS category_revenue
+from product_details AS pd
+join sales AS s
+on pd.product_id = s.prod_id
+group by segment_name,category_name
+)
+SELECT segment_name,
+       category_name, 
+       CAST ( 100.0 * category_revenue/ SUM(category_revenue) over(partition by category_name) AS decimal (10,2)) Product_segement_pct
+from product_segment
+
+
+-- 8. What is the percentage split of total revenue by category?
+With product_segment AS 
+( 
+SELECT category_name,
+	   sum(s.qty * s.price) AS revenue
+from product_details AS pd
+join sales AS s
+on pd.product_id = s.prod_id
+group by category_name
+)
+SELECT category_name, 
+       CAST ( 100.0 * revenue/ SUM(revenue) over() AS decimal (10,2)) Product_segement_pct
+from product_segment
+
+-- 9. What is the total transaction “penetration” for each product? 
+--(hint: penetration = number of transactions where at least 1 quantity of a product was purchased divided by total number of transactions)
+WITH pene AS ( 
+SELECT s.prod_id, pd.product_name, COUNT(Distinct txn_id) As prod_transaction,
+(SELECT Count(Distinct txn_id)from sales) AS total_trans
+from sales AS s
+join product_details AS pd
+on s.prod_id = pd.product_id
+group by s.prod_id, pd.product_name
+)
+SELECT *, CAST(100.0 * prod_transaction/ total_trans As decimal(10,2) ) AS penetration
+from pene
+
+-- 10. What is the most common combination of at least 1 quantity of any 3 products in a 1 single transaction?
