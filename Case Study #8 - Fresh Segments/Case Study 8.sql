@@ -1,63 +1,30 @@
-SELECT * from interest_map
-SELECT * from interest_metrics
-SELECT * from json_data
-                                 -- B. Segment Analysis
--- 1. Using our filtered dataset by removing the interests with less than 6 months worth of data, which are the top
---    10 and bottom 10 interests which have the largest composition values in any month_year? 
---    Only use the maximum composition value for each interest but you must keep the corresponding month_year
+							  -- Points To Remember
+
+UPDATE interest_metrics
+SET _month = CASE WHEN _month = 'NULL' THEN NULL::INTEGER ELSE _month::INTEGER END;
+
+-- This one is working : 
+ -- Oh, NULL::INTERGER only works for PostgreSQL. For SQL Server, you should use CAST
+
+UPDATE interest_metrics
+SET _month = CASE WHEN _month = 'NULL' THEN CAST(NULL AS INTEGER) ELSE CAST(_month AS INTEGER) END;
+
+UPDATE interest_metrics
+SET _year = CASE WHEN _year = 'NULL' THEN CAST(NULL AS INTEGER) ELSE CAST(_year AS INTEGER) END;
 
 
+-- To create and insert json_data table, you have to replace json with  nvarchar(MAX) if you using SQL Server.And you have to remove JSON from INSERT statement.
 
--- 2. Which 5 interests had the lowest average ranking value?
 
--- 3. Which 5 interests had the largest standard deviation in their percentile_ranking value?
+-- The data types text and varchar are incompatible in the equal to operator.
 
--- 4. For the 5 interests found in the previous question - what was minimum and maximum percentile_ranking values 
--- for each interest and its corresponding year_month value? Can you describe what is happening for these 5 interests?
-
--- 5. How would you describe our customers in this segment based off their composition and ranking values?
--- What sort of products or services should we show to these customers and what should we avoid?
-                               
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   
-							   -- A. Data Exploration and Cleansing
+--UPDATE interest_map
+--SET interest_summary = NULL
+--WHERE Convert(VARCHAR , interest_summary) = (' ');
+							  
+							  
+							  
+							  -- A. Data Exploration and Cleansing
 -- 1. Update the fresh_segments.interest_metrics table by modifying the month_year column to be a date data type
 -- with the start of the month
 --Modify the length of column month_year so it can store 10 characters
@@ -139,25 +106,19 @@ on metrics.interest_id = map.id
 WHERE metrics.month_year < CAST(map.created_at AS DATE);
 
 
-
-UPDATE interest_metrics
-SET _month = CASE WHEN _month = 'NULL' THEN NULL::INTEGER ELSE _month::INTEGER END;
-
--- This one is working : 
- -- Oh, NULL::INTERGER only works for PostgreSQL. For SQL Server, you should use CAST
-
-UPDATE interest_metrics
-SET _month = CASE WHEN _month = 'NULL' THEN CAST(NULL AS INTEGER) ELSE CAST(_month AS INTEGER) END;
-
-UPDATE interest_metrics
-SET _year = CASE WHEN _year = 'NULL' THEN CAST(NULL AS INTEGER) ELSE CAST(_year AS INTEGER) END;
+                                            -- B. Segment Analysis
+-- 1. Using our filtered dataset by removing the interests with less than 6 months worth of data, which are the top
+--    10 and bottom 10 interests which have the largest composition values in any month_year? 
+--    Only use the maximum composition value for each interest but you must keep the corresponding month_year
 
 
--- To create and insert json_data table, you have to replace json with  nvarchar(MAX) if you using SQL Server.And you have to remove JSON from INSERT statement.
 
+-- 2. Which 5 interests had the lowest average ranking value?
 
--- The data types text and varchar are incompatible in the equal to operator.
+-- 3. Which 5 interests had the largest standard deviation in their percentile_ranking value?
 
---UPDATE interest_map
---SET interest_summary = NULL
---WHERE Convert(VARCHAR , interest_summary) = (' ');
+-- 4. For the 5 interests found in the previous question - what was minimum and maximum percentile_ranking values 
+-- for each interest and its corresponding year_month value? Can you describe what is happening for these 5 interests?
+
+-- 5. How would you describe our customers in this segment based off their composition and ranking values?
+-- What sort of products or services should we show to these customers and what should we avoid?

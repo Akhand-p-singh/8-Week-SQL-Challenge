@@ -1,30 +1,4 @@
-SELECT
-     CONVERT(date, week_date, 3) as week_date,                            --1
-     DATEPART(week, CONVERT(date, week_date, 3)) as week_number,          --2
-	 DATEPART(month, CONVERT(date, week_date, 3)) as month_number,        --3
-	 DATEPART(year, CONVERT(date, week_date, 3)) as calender_year,        --4
-	 region, 
-     platform, 
-     segment,
-	 sales,
-	 transactions,
-	 CASE                                                                  --5
-	     When segment Like '%1' then  'Young Adults'
-		 When segment Like '%2' then  'Middle Aged'
-		 When segment Like '%3' or segment like '%4' then  'Retires'
-		 else 'unknown'                                                    --7
-		 end as age_band,
-	 CASE                                                                  --6   
-	     When segment Like '%C%' then 'Couples'
-		 When segment Like '%F%' then 'Families'
-		 else 'unknown'                                                    --7
-		 end as demographic,
-	 ROUND(CAST(sales AS FLOAT)/transactions, 2) AS avg_transaction        --8
-	 INTO clean_weekly_sales
-from data_mart
-
-
-                              /*   1. Data Cleansing Steps
+  /*   1. Data Cleansing Steps
 In a single query, perform the following operations and generate a new table in the data_mart schema named clean_weekly_sales:
 
 -- 1. Convert the week_date to a DATE format
@@ -52,3 +26,33 @@ segment	          demographic
 
 --8 Generate a new avg_transaction column as the sales value divided by transactions rounded to 2 decimal places for each record
 */
+
+
+
+SELECT
+     CONVERT(date, week_date, 3) as week_date,                            --1
+     DATEPART(week, CONVERT(date, week_date, 3)) as week_number,          --2
+	 DATEPART(month, CONVERT(date, week_date, 3)) as month_number,        --3
+	 DATEPART(year, CONVERT(date, week_date, 3)) as calender_year,        --4
+	 region, 
+     platform, 
+     segment,
+	 sales,
+	 transactions,
+	 CASE                                                                  --5
+	     When segment Like '%1' then  'Young Adults'
+		 When segment Like '%2' then  'Middle Aged'
+		 When segment Like '%3' or segment like '%4' then  'Retires'
+		 else 'unknown'                                                    --7
+		 end as age_band,
+	 CASE                                                                  --6   
+	     When segment Like '%C%' then 'Couples'
+		 When segment Like '%F%' then 'Families'
+		 else 'unknown'                                                    --7
+		 end as demographic,
+	 ROUND(CAST(sales AS FLOAT)/transactions, 2) AS avg_transaction        --8
+	 INTO clean_weekly_sales
+from data_mart
+
+
+                            

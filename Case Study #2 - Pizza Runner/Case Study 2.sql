@@ -1,81 +1,4 @@
-SELECT * from customer_orders
-SELECT * FROM cleaned_runner_orders
-SELECT * from pizza_names
-SELECT * from pizza_recipes
-SELECT * from pizza_toppings
-SELECT * from runners  
-
-                    -- C. Ingredient Optimisation
-SELECT *
-from pizza_recipes
-cross apply string_split(toppings, ',')
-
-DEclare @toppings as VARCHAR
-
-
-
-
--- 1 What are the standard ingredients for each pizza?
-SELECT pizza_id, toppings
-from pizza_recipes
-where toppings in 
-
--- 2 What was the most commonly added extra?
-select 
-
-
-
-
-
-
-
-
-
-                      --  B. Runner and Customer Experience  -- 
-
---1 How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
-SELECT DATEPART(WEEK,  registration_DATE) as Week, COUNT(runner_id) as count
-from runners
-group by DATEPART(WEEK,  registration_DATE)
-
--- 2 What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
---SELECT ro.runner_id,  AVG(DATEDIFF(MINUTE, ro.pickup_time , co.order_time))
---from runner_orders ro
---join customer_orders co
---on ro.order_id =  co.order_id
---group by ro.runner_id
-
--- 3 Is there any relationship between the number of pizzas and how long the order takes to prepare?
---SELECT co.order_id, COUNT(pizza_id), DATEDIFF(MINUTE , co.order_time, ro.pickup_time ) time_taken_per_order,
---DATEDIFF(MINUTE , co.order_time, ro.pickup_time ) /  COUNT(pizza_id) as time_taken_per_pizaa
---from customer_orders co
---join runner_orders ro
---on co.order_id = ro.order_id
---group by co.order_id, co.order_time, ro.pickup_time
-
---4 What was the average distance travelled for each customer?
-SELECT co.customer_id, AVG(ro.distance)
-from customer_orders co
-join cleaned_runner_orders ro
-on co.order_id = ro.order_id 
-
---5 What was the difference between the longest and shortest delivery times for all orders?
-SELECT  Min(duration) min_time, MAX(duration) max_time, MAX(duration) - Min(duration) as time_diff
-from cleaned_runner_orders
-
---6 What was the average speed for each runner for each delivery and do you notice any trend for these values?
-Select runner_id, distance, duration , round(distance/duration * 60, 2) avg_speed
-from cleaned_runner_orders
-where cancellation is null
-order by runner_id,  round(distance/duration * 60, 2) 
-
--- 7 What is the successful delivery percentage for each runner?
-select runner_id, COUNT(order_id) total_order, COUNT(pickup_time) total_orders_delivered, 
-cast(COUNT(pickup_time)as float)/ cast(COUNT(order_id) as float) * 100.0  as successful_delivery_percent
-from cleaned_runner_orders
-group by runner_id
-
-                                --  A. Pizza Metrics  --
+                        --  A. Pizza Metrics  --
 
 
 -- 1 How many pizzas were ordered?
@@ -148,8 +71,70 @@ FROM customer_orders
 GROUP BY FORMAT(order_time, 'dddd');
 
 
+                                --  B. Runner and Customer Experience  -- 
+
+--1 How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
+SELECT DATEPART(WEEK,  registration_DATE) as Week, COUNT(runner_id) as count
+from runners
+group by DATEPART(WEEK,  registration_DATE)
+
+-- 2 What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
+--SELECT ro.runner_id,  AVG(DATEDIFF(MINUTE, ro.pickup_time , co.order_time))
+--from runner_orders ro
+--join customer_orders co
+--on ro.order_id =  co.order_id
+--group by ro.runner_id
+
+-- 3 Is there any relationship between the number of pizzas and how long the order takes to prepare?
+--SELECT co.order_id, COUNT(pizza_id), DATEDIFF(MINUTE , co.order_time, ro.pickup_time ) time_taken_per_order,
+--DATEDIFF(MINUTE , co.order_time, ro.pickup_time ) /  COUNT(pizza_id) as time_taken_per_pizaa
+--from customer_orders co
+--join runner_orders ro
+--on co.order_id = ro.order_id
+--group by co.order_id, co.order_time, ro.pickup_time
+
+--4 What was the average distance travelled for each customer?
+SELECT co.customer_id, AVG(ro.distance)
+from customer_orders co
+join cleaned_runner_orders ro
+on co.order_id = ro.order_id 
+
+--5 What was the difference between the longest and shortest delivery times for all orders?
+SELECT  Min(duration) min_time, MAX(duration) max_time, MAX(duration) - Min(duration) as time_diff
+from cleaned_runner_orders
+
+--6 What was the average speed for each runner for each delivery and do you notice any trend for these values?
+Select runner_id, distance, duration , round(distance/duration * 60, 2) avg_speed
+from cleaned_runner_orders
+where cancellation is null
+order by runner_id,  round(distance/duration * 60, 2) 
+
+-- 7 What is the successful delivery percentage for each runner?
+select runner_id, COUNT(order_id) total_order, COUNT(pickup_time) total_orders_delivered, 
+cast(COUNT(pickup_time)as float)/ cast(COUNT(order_id) as float) * 100.0  as successful_delivery_percent
+from cleaned_runner_orders
+group by runner_id
 
 
+
+
+                         -- C. Ingredient Optimisation
+SELECT *
+from pizza_recipes
+cross apply string_split(toppings, ',')
+
+DEclare @toppings as VARCHAR
+
+
+
+
+-- 1 What are the standard ingredients for each pizza?
+SELECT pizza_id, toppings
+from pizza_recipes
+where toppings in 
+
+-- 2 What was the most commonly added extra?
+select 
 
 
 
