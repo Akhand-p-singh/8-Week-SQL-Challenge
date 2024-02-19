@@ -1,5 +1,6 @@
-  /*   1. Data Cleansing Steps
+  /*   1. Data Cleaning Steps
 In a single query, perform the following operations and generate a new table in the data_mart schema named clean_weekly_sales:
+
 
 -- 1. Convert the week_date to a DATE format
 

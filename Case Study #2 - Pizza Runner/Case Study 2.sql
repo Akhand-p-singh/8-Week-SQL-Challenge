@@ -1,39 +1,54 @@
-                        --  A. Pizza Metrics  --
+select * from customer_orders    
+select * from cleaned_customer_orders 
+					  
+					  
+					  
+					  --  A. Pizza Metrics  --
 
 
 -- 1 How many pizzas were ordered?
-SELECT COUNT(order_id)as Delivered_pizza from customer_orders
+
+SELECT COUNT(order_id)as Delivered_pizza
+from customer_orders
 
 -- 2 How many unique customer orders were made?
 
-select count(distinct order_id) as unique_customers from customer_orders
+select count(distinct order_id) as unique_customers
+from customer_orders
 
 
 -- 3 How many successful orders were delivered by each runner?
-/*
+
 SELECT runner_id, COUNT(order_id) as no_of_order_delivered
 from cleaned_runner_orders
 where cancellation is NULL
 group by runner_id
-*/
+
+
 
 -- 4 How many of each type of pizza was delivered?
-/*
-select pizza_id, COUNT(order_id) as no_of_pizza_delivered
-from customer_orders
-group by pizza_id
-*/
 
+SELECT CAST(pizza_name AS VARCHAR(MAX)) AS pizza_name, COUNT(co.order_id) AS total_order
+FROM customer_orders co
+JOIN pizza_names pn ON pn.pizza_id = co.pizza_id
+join runner_orders ro ON  co.order_id = ro.order_id
+GROUP BY CAST(pizza_name AS VARCHAR(MAX));
+
+
+-- Changing Data type:
+
+ALTER TABLE pizza_names
+ALTER COLUMN pizza_name VARCHAR(MAX);
 
 
 -- 5 How many Vegetarian and Meatlovers were ordered by each customer?
-/*
-SELECT co.customer_id, pn.pizza_name, count(co.customer_id)
-from pizza_names pn
-join customer_orders co
-on pn.pizza_id = co.pizza_id
-group by  co.customer_id, pn.pizza_name
-*/
+
+Select  customer_id, pizza_name, COUNT(order_id) order_count
+from customer_orders co
+join pizza_names  pn
+on co.pizza_id = pn.pizza_id
+group by customer_id, pizza_name
+order by customer_id
 
 
 -- 6 What was the maximum number of pizzas delivered in a single order?
@@ -44,17 +59,36 @@ group by order_id
 order by no_of_times_pizza_ordered desc
 
 
+
 -- 7 For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
 
--- 8 How many pizzas were delivered that had both exclusions and extras?
 /*
-SELECT COUNT(order_id)
-from customer_orders
 
-select *
-from customer_orders
-where  not NULL IN(exclusions,extras)
+SELECT customer_id, sum(Case when exclusions != ''or extras != '' then 1 else 0 end) as no_changes,
+sum(Case when exclusions = '' AND extras = '' then 1 else 0 end) changes
+from customer_orders co
+join runner_orders ro
+on co.order_id = ro.order_id
+where ro.cancellation is null
+group by  customer_id
+
 */
+
+
+-- 8 How many pizzas were delivered that had both exclusions and extras?
+
+/*
+
+Select 
+    sum(case when exclusions != '' AND extras != '' then 1 else 0 end)
+from customer_orders co
+join runner_orders ro
+on co.order_id = ro.order_id
+where 
+exclusions <> '' AND extras <> '' AND distance >= 1     
+
+*/
+
 
 -- 9 What was the total volume of pizzas ordered for each hour of the day?
 SELECT 
@@ -78,29 +112,43 @@ SELECT DATEPART(WEEK,  registration_DATE) as Week, COUNT(runner_id) as count
 from runners
 group by DATEPART(WEEK,  registration_DATE)
 
+
+
+
 -- 2 What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
---SELECT ro.runner_id,  AVG(DATEDIFF(MINUTE, ro.pickup_time , co.order_time))
---from runner_orders ro
---join customer_orders co
---on ro.order_id =  co.order_id
---group by ro.runner_id
+
+SELECT ro.runner_id,  AVG(DATEDIFF(MINUTE, co.order_time ,  ro.pickup_time ))
+from runner_orders ro
+join customer_orders co
+on ro.order_id =  co.order_id
+where cancellation is Null
+group by ro.runner_id
+
 
 -- 3 Is there any relationship between the number of pizzas and how long the order takes to prepare?
---SELECT co.order_id, COUNT(pizza_id), DATEDIFF(MINUTE , co.order_time, ro.pickup_time ) time_taken_per_order,
---DATEDIFF(MINUTE , co.order_time, ro.pickup_time ) /  COUNT(pizza_id) as time_taken_per_pizaa
---from customer_orders co
---join runner_orders ro
---on co.order_id = ro.order_id
---group by co.order_id, co.order_time, ro.pickup_time
+with cte 
+as ( 
+SELECT  COUNT(pizza_id) pizza_order, DATEDIFF(MINUTE , co.order_time, ro.pickup_time) time_taken_per_order
+from customer_orders co
+join runner_orders ro
+on co.order_id = ro.order_id
+where cancellation is Null
+group by  co.order_time, ro.pickup_time
+)
+
+select pizza_order, AVG(time_taken_per_order) avg_time
+from cte
+group by pizza_order
 
 --4 What was the average distance travelled for each customer?
 SELECT co.customer_id, AVG(ro.distance)
 from customer_orders co
 join cleaned_runner_orders ro
 on co.order_id = ro.order_id 
+group by co.customer_id
 
 --5 What was the difference between the longest and shortest delivery times for all orders?
-SELECT  Min(duration) min_time, MAX(duration) max_time, MAX(duration) - Min(duration) as time_diff
+SELECT MAX(duration) - Min(duration) as time_diff
 from cleaned_runner_orders
 
 --6 What was the average speed for each runner for each delivery and do you notice any trend for these values?
@@ -125,13 +173,25 @@ cross apply string_split(toppings, ',')
 
 DEclare @toppings as VARCHAR
 
-
+select * from customer_orders
+select * from pizza_names
+select * from runner_orders
+select * from pizza_recipes
+select * from plans
+select * from pizza_toppings
+select * from runners
+select * from subscriptions
 
 
 -- 1 What are the standard ingredients for each pizza?
-SELECT pizza_id, toppings
-from pizza_recipes
-where toppings in 
+SELECT pn.pizza_id, topping_name
+from pizza_names pn
+join pizza_recipes pr
+on pn.pizza_id = pr.pizza_id
+join pizza_toppings pt
+on pt.topping_id = pr.toppings
+
+
 
 -- 2 What was the most commonly added extra?
 select 

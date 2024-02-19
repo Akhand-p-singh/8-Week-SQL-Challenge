@@ -13,8 +13,8 @@ WHERE customer_id in (2,4,6,8,10,12,14,16)
 
 -- Insight based on random 8 customer.
 
-/* customer 4 and 6 tried our basic monthly plan then after 88 and 58 days respectively they left. 
-customer 16 is the only customer with pro annual subscription. */
+Note: customer 4 and 6 tried our basic monthly plan then after 88 and 58 days respectively they left. 
+customer 16 is the only customer with pro annual subscription. 
 
                           -- B. Data Analysis Questions
 
@@ -36,7 +36,7 @@ order by start_month
 -- 3 What plan start_date values occur after the year 2020 for our dataset? 
 -- Show the breakdown by count of events for each plan_name
 
-SELECT plan_name, COUNT(customer_id)
+SELECT plan_name, COUNT(customer_id) no_of_events
 from plans p
 join subscriptions s
 on p.plan_id = s.plan_id 
@@ -54,28 +54,76 @@ from subscriptions
 where plan_id = 4	 
 
 
+SELECT * from plans
+select * from subscriptions
+
 -- 5 How many customers have churned straight after their initial free trial - 
 -- what percentage is this rounded to the nearest whole number?
-correct way: Use of case and lag function
    
-/* SELECT customer_id, s.plan_id, ROW_NUMBER() over(partition by customer_id order by customer_id)
+with cte as 
+(
+SELECT customer_id, p.plan_id,LEAD(p.plan_id) over(partition by customer_id order by start_date) nxt_plan
 from plans p
 join subscriptions s
 on p.plan_id = s.plan_id
-where s.plan_id in (1, 4)  */
+) ,
+cte2 as (
+select * 
+from cte 
+where plan_id = 0 and nxt_plan = 4
+)
 
+Select COUNT(customer_id) churn_after_trial, round(100 *count(customer_id)/
+               (SELECT count(DISTINCT customer_id) AS 'distinct customers'
+                FROM subscriptions), 2) AS 'churn percentage'
+from cte2
 
 -- 6 What is the number and percentage of customer plans after their initial free trial?
---SELECT customer_id, plan_id, lead(plan_id, 1) over(partition by customer_id order by plan_id)
---from subscriptions
+
+WITH next_plans AS (
+  SELECT 
+    customer_id, 
+    plan_id, 
+    LEAD(plan_id) OVER(
+      PARTITION BY customer_id 
+      ORDER BY plan_id) as next_plan_id
+  FROM subscriptions
+)
+
+SELECT 
+  next_plan_id AS plan_id, 
+  COUNT(customer_id) AS converted_customers,
+  ROUND(100 * 
+    COUNT(customer_id) 
+    / (SELECT COUNT(DISTINCT customer_id) 
+      FROM subscriptions)
+  ,1) AS conversion_percentage
+FROM next_plans
+WHERE next_plan_id IS NOT NULL 
+  AND plan_id = 0
+GROUP BY next_plan_id
+ORDER BY next_plan_id;
+
 
 -- 7 What is the customer count and percentage breakdown of all 5 plan_name values at 2020-12-31?
-/* SELECT customer_id,p.plan_name,LEAD(p.plan_name,1) OVER (PARTITION BY customer_id ORDER BY s.start_date) AS next_plan 
--- Ordering by start_date ensures that the next_plan value is the next plan opted by the customer and not the next plan_id in serial order (which happens when you order by plan_id)
-FROM subscriptions s
-JOIN plans p
-ON s.plan_id = p.plan_id
-WHERE start_date <= '2020-12-31' */
+WITH latest_plan_cte AS
+  (SELECT customer_id, plans.plan_id, plan_name,
+          row_number() over(PARTITION BY customer_id
+                            ORDER BY start_date DESC) AS latest_plan
+   FROM subscriptions
+   JOIN plans 
+   on subscriptions.plan_id = plans.plan_id
+   WHERE start_date <='2020-12-31' )
+SELECT plan_id,
+       plan_name,
+       count(customer_id) AS customer_count,
+       round(100*count(customer_id) /
+               (SELECT COUNT(DISTINCT customer_id)
+                FROM subscriptions), 2) AS percentage_breakdown
+FROM latest_plan_cte
+WHERE latest_plan = 1
+GROUP BY plan_id, plan_name
+ORDER BY plan_id;
 
 -- 8 How many customers have upgraded to an annual plan in 2020?
 SELECT count(customer_id)
@@ -96,6 +144,7 @@ from annual_customer
 
 
 -- 10 Can you further breakdown this average value into 30 day periods (i.e. 0-30 days, 31-60 days etc)
+
 
 -- 11 How many customers downgraded from a pro monthly to a basic monthly plan in 2020?
 WITH downgraded_cust AS 
