@@ -73,7 +73,7 @@ join sales
 on members.customer_id = sales.customer_id
 WHERE order_date >= join_date 
 )
-select  menu.product_name, cte.order_date, cte.join_date
+select  customer_id, menu.product_name, cte.order_date
 from cte
 join menu
 on menu.product_id = CTE.product_id
@@ -89,31 +89,26 @@ join sales
 on members.customer_id = sales.customer_id
 WHERE order_date < join_date 
 )
-select  menu.product_name, cte.order_date, cte.join_date
-from cte
+select  customer_id, menu.product_name, cte.order_date
+from CTE
 join menu
 on menu.product_id = CTE.product_id
 WHERE rnk = 1
 
--- 8. What is the total items and amount spent for each member before they became a member?
-with cte as (
-SELECT customer_id, sales.order_date, sum(price) AS Total_amount, COUNT(order_date) Total_items
-from menu
-join sales
-on menu.product_id = sales.product_id
-Group by customer_id,sales.order_date
-)
 
-SELECT *
-from members
-join cte
-on members.customer_id = cte.customer_id
-WHERE order_date > join_date
+-- 8. What is the total items and amount spent for each member before they became a member?
+
+SELECT sales.Customer_id, sum(price) AS Total_amount, COUNT(product_name) Total_items
+from menu
+inner join sales on menu.product_id = sales.product_id
+INNER JOIN members AS mem ON mem.customer_id = sales.customer_id
+WHERE order_date < join_date
+Group by sales.customer_id
 
 
 -- 9.  If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
 
-SELECT sales.customer_id, Sum(menu.price) total_Amount_spent, SUM(CASE WHEN menu.product_id = 1  then  20*price else 10*price END) as points
+SELECT sales.customer_id, SUM(CASE WHEN menu.product_id = 1  then  20*price else 10*price END) as total_points
 from menu
 join sales
 on menu.product_id = sales.product_id
