@@ -13,7 +13,7 @@ This is 8 Week SQL Challenge by Danny Ma.
 
 ---
 
-## Case Study 1: Danny's Dinner
+## 🍞 Case Study 1: Danny's Dinner
 <p align="center">
 <img src="https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%201.png" align="center" width="400" height="400" >
 
@@ -29,7 +29,7 @@ You can get the SQL Schema and Case Study [from here](https://8weeksqlchallenge.
   
 ---
   
-## Case Study #2 - Pizza Runner
+## 🍕 Case Study #2 - Pizza Runner
   
 <p align="center">
 <img src="https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%202.png" align="center" width="400" height="400" >
@@ -42,7 +42,7 @@ You can get the SQL Schema and Case Study [from here](https://8weeksqlchallenge.
   
 ---
   
-## Case Study #3 - Foodie-Fi
+## 📺 Case Study #3 - Foodie-Fi
   
 <p align="center">
 <img src="https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%203.png" align="center" width="400" height="400" > 
@@ -57,7 +57,7 @@ You can get the SQL Schema and Case Study [from here](https://8weeksqlchallenge.
   
 ---
   
-## Case Study #4 - Data Bank 
+## 🏦 Case Study #4 - Data Bank 
  
 <p align="center">
 <img src="https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%204.png" align="center" width="400" height="400" > 
@@ -78,7 +78,7 @@ You can get the SQL Schema and Case Study [from here](https://8weeksqlchallenge.
   
 ---
   
-## Case Study #5 - Data Mart
+## 🍒 Case Study #5 - Data Mart
   
 <p align="center">
 <img src="https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%205.png" align="center" width="400" height="400" >
@@ -99,7 +99,7 @@ You can get the SQL Schema and Case Study [from here](https://8weeksqlchallenge.
   
 ---
 
-## Case Study #6 - Clique Bait
+## 🦐 Case Study #6 - Clique Bait
   
 <p align="center">
 <img src="https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%206.png" align="center" width="400" height="400" >
@@ -113,7 +113,7 @@ You can get the SQL Schema and Case Study [from here](https://8weeksqlchallenge.
   ---
   
   
-## Case Study #7 - Balanced Tree Clothing Co.
+## 👕 Case Study #7 - Balanced Tree Clothing Co.
   
 <p align="center">
 <img src="https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%207.png" align="center" width="400" height="400" >
@@ -126,7 +126,7 @@ You can get the SQL Schema and Case Study [from here](https://8weeksqlchallenge.
   
 ---
   
-## Case Study #8 - Fresh Segments  
+## 💻 Case Study #8 - Fresh Segments  
   
 <p align="center">
 <img src="https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%208.png" align="center" width="400" height="400" >
