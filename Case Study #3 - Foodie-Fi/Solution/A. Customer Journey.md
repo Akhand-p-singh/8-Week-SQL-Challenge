@@ -1,35 +1,13 @@
 
 # Case Study #3: Foodie-Fi
 
+### A. Customer Journey
+
 ----
-Solution A. Customer Journey
-
-![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%203.png)
-
-
-## 🛠️ Problem Statement
-
-Subscription based businesses are super popular and Danny realised that there was a large gap in the market - he wanted to create a new streaming service that only had food related content - something like Netflix but with only cooking shows!
-
-Danny finds a few smart friends to launch his new startup Foodie-Fi in 2020 and started selling monthly and annual subscriptions, giving their customers unlimited on-demand access to exclusive food videos from around the world!
-
-Danny created Foodie-Fi with a data driven mindset and wanted to ensure all future investment decisions and new features were decided using data. This case study focuses on using subscription style digital data to answer important business questions.
-
----
-
-## Entity Relationship Diagram
-
-![App Screenshot](Enter url er3)
-
----
-
-### Case Study Questions
-
-Based off the 8 sample customers provided in the sample from the subscriptions table, write a brief description about each customer’s onboarding journey.
-
-Try to keep it as short as possible - you may also want to run some sort of join to make your explanations a bit easier!
----
 ## 🚀 Solutions
+
+#### Based off the 8 sample customers provided in the sample from the subscriptions table, write a brief description about each customer’s onboarding journey.
+
 ```
 SELECT s.customer_id, p.plan_name, s.start_date,DATEDIFF(day, LAG(start_date) over(partition by customer_id order by customer_id),start_date) as day_diff
 from plans p
@@ -37,7 +15,7 @@ join subscriptions s
 on p.plan_id = s.plan_id
 WHERE customer_id in (2,4,6,8,10,12,14,16)
 ```
-### Output:
+#### Output:
 
 | customer_id | plan_name     | start_date | day_diff |
 |-------------|---------------|------------|----------|
