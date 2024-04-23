@@ -49,13 +49,10 @@ group by plan_name
 Declare @total_cust float = (SELECT count(distinct customer_id) from subscriptions)
 
 SELECT COUNT(customer_id) as churned_customer,
-COUNT(customer_id)/ @total_cust * 100 as churned_cust
+COUNT(customer_id)/ @total_cust * 100 as churned_pct
 from subscriptions
 where plan_id = 4	 
 
-
-SELECT * from plans
-select * from subscriptions
 
 -- 5 How many customers have churned straight after their initial free trial - 
 -- what percentage is this rounded to the nearest whole number?
@@ -75,7 +72,7 @@ where plan_id = 0 and nxt_plan = 4
 
 Select COUNT(customer_id) churn_after_trial, round(100 *count(customer_id)/
                (SELECT count(DISTINCT customer_id) AS 'distinct customers'
-                FROM subscriptions), 2) AS 'churn percentage'
+                FROM subscriptions), 2) AS churn_pct
 from cte2
 
 -- 6 What is the number and percentage of customer plans after their initial free trial?
@@ -117,16 +114,16 @@ WITH latest_plan_cte AS
 SELECT plan_id,
        plan_name,
        count(customer_id) AS customer_count,
-       round(100*count(customer_id) /
-               (SELECT COUNT(DISTINCT customer_id)
-                FROM subscriptions), 2) AS percentage_breakdown
+       CAST(100*COUNT(*) AS FLOAT) 
+      / (SELECT COUNT(DISTINCT customer_id) FROM subscriptions) AS conversion_rate
+                
 FROM latest_plan_cte
 WHERE latest_plan = 1
 GROUP BY plan_id, plan_name
 ORDER BY plan_id;
 
 -- 8 How many customers have upgraded to an annual plan in 2020?
-SELECT count(customer_id)
+SELECT count(customer_id) total_customer
 from subscriptions
 where DATEPART(YEAR, start_date) = 2020 and plan_id = 3
 
@@ -139,7 +136,7 @@ DATEDIFF(day, start_date,Lead(start_date) over(partition by customer_id order by
 from subscriptions
 where plan_id in (0,3) 
 )
-SELECT AVG(diff_in_day) as avg_days
+SELECT AVG(diff_in_day) as avg_day
 from annual_customer
 
 
@@ -156,7 +153,7 @@ WITH downgraded_cust AS
 from subscriptions
 WHERE plan_id in (1,2) and YEAR(start_date) = 2020
 )
-SELECT COUNT(down_plan)
+SELECT COUNT(down_plan) total_cust_downgraded
 from downgraded_cust 
 where down_plan = 1
 

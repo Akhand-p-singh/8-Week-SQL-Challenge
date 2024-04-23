@@ -2,7 +2,7 @@
 Select * from clean_weekly_sales
 
 --1 What day of the week is used for each week_date value?
-SELECT DATENAME(WEEKDAY,week_date) as Weekdate 
+SELECT Distinct DATENAME(WEEKDAY,week_date) as Weekday
 from clean_weekly_sales
 
 --2 What range of week numbers are missing from the dataset?
@@ -25,9 +25,10 @@ SELECT ID + 1 FROM Emp_CTE WHERE ID < 52
 SELECT calender_year, SUM(transactions) as total_transaction 
 from  clean_weekly_sales
 group by calender_year
+order by calender_year
 
 --4 What is the total sales for each region for each month?
-SELECT region,month_number, sum(cast(sales as bigint))
+SELECT region,month_number, sum(cast(sales as bigint)) total_sales
 from clean_weekly_sales
 group by region,month_number
 order by region, month_number
@@ -48,9 +49,10 @@ group by calender_year, month_number, PLATFORM
 )
 
 SELECT calender_year, month_number,
-       CAST(100.0 * MAX(CASE when PLATFORM = 'Shopify' then monthly_sales END) / sum(cast(sales as bigint)) as decimal (5,2)) as shp_Lmt,
-	   CAST(100.0 * MAX(CASE when PLATFORM = 'Retail' then monthly_sales END) / sum(cast(sales as bigint)) as decimal (5,2))  as Ret_Lmt
+       CAST(100.0 * MAX(CASE when PLATFORM = 'Shopify' then monthly_sales END) / sum(cast(monthly_sales as bigint)) as decimal (5,2)) as shopify_pct,
+	   CAST(100.0 * MAX(CASE when PLATFORM = 'Retail' then monthly_sales END) / sum(cast(monthly_sales as bigint)) as decimal (5,2))  as retail_pct
 from sales_cte
+GROUP BY calender_year,  month_number
 */ 
 
 
@@ -80,7 +82,7 @@ group by age_band, demographic
 -- If not - how would you calculate it instead?
 SELECT 
       calender_year,
-	  PLATFORM,
+	  platform,
 	  Round(AVG( avg_transaction),0) as avg_transaction
 from clean_weekly_sales
 group by calender_year, platform

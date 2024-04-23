@@ -43,12 +43,12 @@ ALTER COLUMN pizza_name VARCHAR(MAX);
 
 -- 5 How many Vegetarian and Meatlovers were ordered by each customer?
 
-Select  customer_id, pizza_name, COUNT(order_id) order_count
-from customer_orders co
-join pizza_names  pn
-on co.pizza_id = pn.pizza_id
-group by customer_id, pizza_name
-order by customer_id
+SELECT 
+  customer_id,
+  SUM(CASE WHEN pizza_id = 1 THEN 1 ELSE 0 END) AS Meatlovers,
+  SUM(CASE WHEN pizza_id = 2 THEN 1 ELSE 0 END) AS Vegetarian
+FROM customer_orders
+GROUP BY customer_id;
 
 
 -- 6 What was the maximum number of pizzas delivered in a single order?
@@ -62,32 +62,32 @@ order by no_of_times_pizza_ordered desc
 
 -- 7 For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
 
-/*
-
-SELECT customer_id, sum(Case when exclusions != ''or extras != '' then 1 else 0 end) as no_changes,
-sum(Case when exclusions = '' AND extras = '' then 1 else 0 end) changes
-from customer_orders co
-join runner_orders ro
-on co.order_id = ro.order_id
-where ro.cancellation is null
-group by  customer_id
-
-*/
-
+SELECT 
+  coc.customer_id,
+  SUM(CASE WHEN (exclusions IS NOT NULL OR extras IS NOT NULL) THEN 1 ELSE 0 END) AS change_in_pizza,
+  SUM(CASE WHEN (exclusions IS NULL AND extras IS NULL) THEN 1 ELSE 0 END) AS no_change_in_pizza
+FROM cleaned_customer_orders AS coc
+INNER JOIN cleaned_runner_orders AS roc 
+  ON coc.order_id = roc.order_id
+WHERE roc.cancellation IS NULL
+  OR roc.cancellation NOT IN  ('Restaurant Cancellation', 'Customer Cancellation')
+GROUP BY coc.customer_id
+ORDER BY coc.customer_id;
 
 -- 8 How many pizzas were delivered that had both exclusions and extras?
 
-/*
 
-Select 
-    sum(case when exclusions != '' AND extras != '' then 1 else 0 end)
-from customer_orders co
-join runner_orders ro
-on co.order_id = ro.order_id
-where 
-exclusions <> '' AND extras <> '' AND distance >= 1     
-
-*/
+SELECT  
+  SUM(
+    CASE WHEN exclusions IS NOT NULL AND extras IS NOT NULL THEN 1
+    ELSE 0
+    END) AS pizza_count
+FROM cleaned_customer_orders AS c
+JOIN cleaned_runner_orders AS r
+  ON c.order_id = r.order_id
+WHERE r.distance >= 1 
+  AND exclusions <> ' ' 
+  AND extras <> ' ';     
 
 
 -- 9 What was the total volume of pizzas ordered for each hour of the day?
@@ -141,7 +141,7 @@ from cte
 group by pizza_order
 
 --4 What was the average distance travelled for each customer?
-SELECT co.customer_id, AVG(ro.distance)
+SELECT co.customer_id, round(AVG(ro.distance),2)
 from customer_orders co
 join cleaned_runner_orders ro
 on co.order_id = ro.order_id 

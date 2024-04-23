@@ -1,8 +1,3 @@
-SELECT * from regions
-SELECT * from customer_nodes
-SELECT * from customer_transactions
-
-                       
 					    --  A. Customer Nodes Exploration
 
 --1. How many unique nodes are there on the Data Bank system?
@@ -20,7 +15,7 @@ order by region_id
 
 --3. How many customers are allocated to each region?
 
-SELECT region_id, COUNT(customer_id) as no_of_customers
+SELECT region_id, COUNT(Distinct customer_id) as no_of_customers
 from customer_nodes
 group by region_id
 order by region_id
@@ -42,7 +37,7 @@ from cte
 --5. What is the median, 80th and 95th percentile for this same reallocation days metric for each region?
 
 					   
-					   B. Customer Transactions
+					  -- B. Customer Transactions
 
 --1 What is the unique count and total amount for each transaction type?
 SELECT txn_type, COUNT( customer_id) as no_of_customer, SUM(txn_amount) as txn_amount
@@ -65,16 +60,12 @@ select AVG(ttl_cust) deposit_count , AVG(ttl_amt) total_money
 from cte
 
 
-SELECT * from regions
-SELECT * from customer_nodes
-SELECT * from customer_transactions
-
 --3   For each month - how many Data Bank customers make more than 1 deposit and either
 --        1 purchase or 1 withdrawal in a single month?
 
 with cte as (
 SELECT 
-	MONTH(txn_date) mth, customer_id,
+	MONTH(txn_date) month, customer_id,
 	sum(case when txn_type = 'deposit' then 0 else 1 END) as deposit,
 	sum(case when txn_type = 'puchase' then 0 else 1 END) as purchase,
 	sum(case when txn_type = 'withdrawal' then 0 else 1 END) as withdrawal
@@ -83,13 +74,13 @@ group by customer_id,MONTH(txn_date)
 )
 
 SELECT
-  mth,
+  month,
   COUNT(DISTINCT customer_id) AS customer_count
 FROM cte
 WHERE deposit > 1 
   AND (purchase >= 1 OR withdrawal >= 1)
-GROUP BY mth
-ORDER BY mth;
+GROUP BY month
+ORDER BY month;
 
 --4 What is the closing balance for each customer at the end of the month?
 /*

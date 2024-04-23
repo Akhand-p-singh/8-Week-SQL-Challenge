@@ -13,8 +13,8 @@ SELECT  SUM(qty*price) AS total_revenue
 from sales
 
 -- 3. What was the total discount amount for all products?
-SELECT CAST(SUM(qty * price * discount/100.0) AS float)
-from sales
+SELECT CAST(SUM(qty * price * discount/100.0) AS float) total_discount
+from sales 
 
                               -- B. Transaction Analysis
 -- 1. How many unique transactions were there?
@@ -59,7 +59,7 @@ SELECT  member, txn_id,  sum(qty * price )	AS total_transaction
 from sales
 group by member, txn_id
 )
-SELECT member, CAST(AVG(1.0*total_transaction) as decimal(10,2))
+SELECT member, CAST(AVG(1.0*total_transaction) as decimal(10,2)) AS avg_revenue
 from revenue 
 group by member
 

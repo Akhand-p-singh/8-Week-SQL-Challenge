@@ -14,14 +14,12 @@ from clique_bait.users
 
 -- 2. How many cookies does each user have on average?
 with cte as (
-
-select user_id, count(cookie_id) AS cookie_count
-from clique_bait.users
-group by user_id
-)
-
-select round(avg(cookie_count), 2)
-from cte
+			select user_id, count(cookie_id) AS cookie_count
+			from clique_bait.users
+			group by user_id
+			)
+		select round(avg(cookie_count), 2) avg_cookies
+		from cte
 
 
 -- 3. What is the unique number of visits by all users per month?
@@ -34,15 +32,19 @@ order by month
 
 -- 4. What is the number of events for each event type?
 
-Select event_type, COUNT(*) total_event
-from clique_bait.events
-GROUP by event_type
-order by event_type
-
+SELECT 
+  e.event_type,
+  ei.event_name,
+  COUNT(*) AS event_count
+FROM clique_bait.events e
+JOIN clique_bait.event_identifier ei
+  ON e.event_type = ei.event_type
+GROUP BY e.event_type, ei.event_name
+ORDER BY e.event_type;
 
 -- 5. What is the percentage of visits which have a purchase event?
 
-Select cast( 100.0 * COUNT( distinct visit_id) / (Select COUNT(distinct visit_id)from clique_bait.events ) as decimal(10,2))
+Select cast( 100.0 * COUNT( distinct visit_id) / (Select COUNT(distinct visit_id)from clique_bait.events ) as decimal(10,2)) purchase_pct
 from clique_bait.events e
 join clique_bait.event_identifier ei
 on e.event_type = ei.event_type
@@ -60,7 +62,7 @@ on ph.page_id = e.page_id
 where ei.event_name = 'Page view' AND ph.page_name = 'Checkout'
 )
 
-Select cast(100-( 100.0 * COUNT( distinct e.visit_id) / (Select cnt from cte )) as decimal(10,2)) as pct_visit
+Select cast(100-( 100.0 * COUNT( distinct e.visit_id) / (Select cnt from cte )) as decimal(10,2)) as non_puchase_pct_visit
 from clique_bait.events e
 JOIN clique_bait.event_identifier ei ON e.event_type = ei.event_type
 WHERE ei.event_name = 'Purchase'
