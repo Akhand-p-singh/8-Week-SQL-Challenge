@@ -57,10 +57,10 @@ This table stores all customer deposits, withdrawals and purchases made using th
 ---
 
 ### Case Study Questions
----
+
 
 ### A. Customer Nodes Exploration
----
+
 
 1. How many unique nodes are there on the Data Bank system?
 
@@ -77,7 +77,7 @@ This table stores all customer deposits, withdrawals and purchases made using th
 --- 
 
 ### B. Customer Transactions
-----
+
 
 1. What is the unique count and total amount for each transaction type?
 
