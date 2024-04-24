@@ -1,11 +1,12 @@
 
-# Case Study #3: Foodie-Fi
+# 🌽 Case Study #3: Foodie-Fi
 
 
 ### B. Data Analysis Questions
 
 ---
-##  Solutions
+## 🚀 Solutions
+
 
 ### **Q1. How many customers has Foodie-Fi ever had?**
 
@@ -219,8 +220,11 @@ from annual_customer
 |-------------|
 | 104         |
 
+---
+
 ### **Q10. Can you further breakdown this average value into 30 day periods (i.e. 0-30 days, 31-60 days etc)**
 
+---
 ### **Q11 How many customers downgraded from a pro monthly to a basic monthly plan in 2020?**
 
 ```
@@ -243,4 +247,4 @@ where down_plan = 1
 |--------------------------|
 | 0                        |
 
-
+---

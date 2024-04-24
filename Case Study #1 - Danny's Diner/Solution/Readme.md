@@ -1,8 +1,9 @@
 
-# Case Study #1: Danny's Dinner
+# 🍴 Case Study #1: Danny's Dinner
 
----
+
 ## 🚀 Solutions
+---
 
 ### **Q1. What is the total amount each customer spent at the restaurant?**
 ```sql

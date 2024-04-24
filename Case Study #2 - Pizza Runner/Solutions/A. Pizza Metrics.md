@@ -1,7 +1,7 @@
 
-# Case Study #2: Pizza Runner
----
-## Solution - A. Pizza Metrics
+# 🍕 Case Study #2: Pizza Runner
+
+## A. Pizza Metrics
 
 ---
 ## 🚀 Solutions
@@ -173,6 +173,8 @@ GROUP BY DATEPART(HOUR, order_time)
 | 21          | 3             |
 | 23          | 3             |
 
+---
+
 ### **Q10. What was the volume of orders for each day of the week?**
 
 ```
@@ -190,3 +192,4 @@ GROUP BY FORMAT(order_time, 'dddd');
 | Thursday  | 3             |
 | Wednesday | 5             |
 
+---

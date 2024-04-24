@@ -1,27 +1,27 @@
-#  Case Study #3 - Foodie-Fi
+# 🌽 Case Study #3 - Foodie-Fi
 
 ![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%203.png)
   
 
 ---
-## 🛠️ Bussiness Task
+## 🛠️ Problem Statement
 Danny finds a few smart friends to launch his new startup Foodie-Fi in 2020 and started selling monthly and annual subscriptions, giving their customers unlimited on-demand access to exclusive food videos from around the world!
 
 Danny created Foodie-Fi with a data driven mindset and wanted to ensure all future investment decisions and new features were decided using data. This case study focuses on using subscription style digital data to answer important business questions.
 
 ---
-##  Entity Relationship Diagram
+## 💡 Entity Relationship Diagram
 
 ![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/er3.png)
 
 ----
 
-## Dataset :-
+## 💾 About Dataset
 
 
 ### Table 1: plans 
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/3.%20plans.png)
 
 * Basic plan customers have limited access and can only stream their videos and is only available monthly at $9.90
 
@@ -35,7 +35,7 @@ Danny created Foodie-Fi with a data driven mindset and wanted to ensure all futu
 
 ### Table 2: subscriptions
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/3.%20subscriptions.png)
 
 * Customer subscriptions show the exact date where their specific plan_id starts.
 
@@ -46,7 +46,7 @@ Danny created Foodie-Fi with a data driven mindset and wanted to ensure all futu
 * When customers churn - they will keep their access until the end of their current billing period but the start_date will be technically the day they decided to cancel their service.
 
 ---
-## Case Study Questions
+## 🔍 Case Study Questions
 ### A. Customer Journey
 
 * Based off the 8 sample customers provided in the sample from the subscriptions table, write a brief description about each customer’s onboarding journey.

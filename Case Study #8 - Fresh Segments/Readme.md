@@ -1,10 +1,10 @@
-#  Case Study #8 - Fresh Segments
+#  📈 Case Study #8 - Fresh Segments
 
 ![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%208.png)
   
 
 ---
-## 🛠️ Bussiness Task
+## 🛠️   Problem Statement
 Danny created Fresh Segments, a digital marketing agency that helps other businesses analyse trends in online ad click behaviour for their unique customer base.
 
 Clients share their customer lists with the Fresh Segments team who then aggregate interest metrics and generate a single dataset worth of metrics for further analysis.
@@ -15,12 +15,12 @@ Danny has asked for your assistance to analyse aggregated metrics for an example
 
 ---
 
-## Dataset :-
+## 💾  About Dataset
 
 
 ### Table 1: Interest Metrics
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/8.%20interest%20metrics.png)
 
 * This table contains information about aggregated interest metrics for a specific major client of Fresh Segments which makes up a large proportion of their customer base.
 
@@ -30,12 +30,12 @@ Danny has asked for your assistance to analyse aggregated metrics for an example
 
 ### Table 2: Interest Map
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/8.%20interest%20map.png)
 
 * This mapping table links the interest_id with their relevant interest information. You will need to join this table onto the previous interest_details table to obtain the interest_name as well as any details about the summary information.
 
 ---
-## Case Study Questions
+## 🔍 Case Study Questions
 
 ### A. Data Exploration and Cleansing
 

@@ -1,5 +1,5 @@
 
-# Case Study #3: Foodie-Fi
+# 🌽 Case Study #3: Foodie-Fi
 
 ### A. Customer Journey
 
@@ -44,6 +44,6 @@ WHERE customer_id in (2,4,6,8,10,12,14,16)
 
 **Note:**
 
-Customer 4 and 6 tried our basic monthly plan then after 88 and 58 days respectively they left.
+* Customer 4 and 6 tried our basic monthly plan then after 88 and 58 days respectively they left.
 
-Customer 16 is the only customer with pro annual subscription.
+* Customer 16 is the only customer with pro annual subscription.

@@ -1,10 +1,10 @@
-#  Case Study #7 - Balanced Tree Clothing Co.
+#  üëï Case Study #7 - Balanced Tree Clothing Co.
 
 ![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%207.png)
   
 
 ---
-## üõ†Ô∏è Bussiness Task
+## üõ†Ô∏è   Problem Statement
 
 Balanced Tree Clothing Company prides themselves on providing an optimised range of clothing and lifestyle wear for the modern adventurer!
 
@@ -12,12 +12,12 @@ Danny, the CEO of this trendy fashion company has asked you to assist the team‚Ä
 
 ----
 
-## Dataset :-
+## üíæ  About Dataset
 
 
 ### Table 1: Product Details 
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/7.%20product%20details.png)
 
 * balanced_tree.product_details includes all information about the entire range that Balanced Clothing sells in their store.
 
@@ -25,7 +25,7 @@ Danny, the CEO of this trendy fashion company has asked you to assist the team‚Ä
 
 ### Table 2: Product Sales
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/7.%20product%20sales.png)
 
 * balanced_tree.sales contains product level information for all the transactions made for Balanced Tree including quantity, price, percentage discount, member status, a transaction ID and also the transaction timestamp.
 
@@ -33,12 +33,12 @@ Danny, the CEO of this trendy fashion company has asked you to assist the team‚Ä
 
 ### Table 3: Product Hierarcy & Product Price
 
-![App Screenshot](Add Table image)  2.  ![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/7.%20product%20heirarcy%20and%20product%20price.png) 
 
 * Thes tables are used only for the bonus question where we will use them to recreate the balanced_tree.product_details table.
 
 ---
-## Case Study Questions
+## üîç Case Study Questions
 
 ### A. High Level Sales Analysis
 
@@ -92,3 +92,5 @@ Danny, the CEO of this trendy fashion company has asked you to assist the team‚Ä
 10. What is the most common combination of at least 1 quantity of any 3 products in a 1 single transaction?
 
 <b>Solution:</b> [Click here](https://github.com/Akhand-p-singh/8-Week-SQL-Challenge/blob/master/Case%20Study%20%237-%20%20Balanced%20Tree%20Clothing%20Co/Solution/3.%20Product%20Analysis.md)
+
+---

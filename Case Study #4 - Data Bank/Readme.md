@@ -1,4 +1,4 @@
-# Case Study #4: Data Bank
+# 🏦 Case Study #4: Data Bank
 
 
 ![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%203.png)
@@ -20,47 +20,46 @@ This case study is all about calculating metrics, growth and helping the busines
 
 
 ---
-## Entity Relationship Diagram
+## 💡 Entity Relationship Diagram
 
 ![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/er4.png)
 
 ---
 
-## About Dataset :-
+## 💾  About Dataset :-
 
 ### Table 1: regions
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/4.%20regions.png)
 
-Just like popular cryptocurrency platforms - Data Bank is also run off a network of nodes where both money and data is stored across the globe. In a traditional banking sense - you can think of these nodes as bank branches or stores that exist around the world.
+* Just like popular cryptocurrency platforms - Data Bank is also run off a network of nodes where both money and data is stored across the globe. In a traditional banking sense - you can think of these nodes as bank branches or stores that exist around the world.
 
-This regions table contains the region_id and their respective region_name values
+* This regions table contains the region_id and their respective region_name values
 
 --- 
 
 ### Table 2: customer_nodes
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/4.%20customer_nodes.png)
 
-Customers are randomly distributed across the nodes according to their region - this also specifies exactly which node contains both their cash and data.
+* Customers are randomly distributed across the nodes according to their region - this also specifies exactly which node contains both their cash and data.
 
-This random distribution changes frequently to reduce the risk of hackers getting into Data Bank’s system and stealing customer’s money and data!
+* This random distribution changes frequently to reduce the risk of hackers getting into Data Bank’s system and stealing customer’s money and data!
 
 ---
 
 ### Table 2: customer_transactions
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/4.%20customer_transactions.png)
 
-This table stores all customer deposits, withdrawals and purchases made using their Data Bank debit card.
+* This table stores all customer deposits, withdrawals and purchases made using their Data Bank debit card.
 
 ---
 
-### Case Study Questions
+### 🔍 Case Study Questions
 
 
 ### A. Customer Nodes Exploration
-
 
 1. How many unique nodes are there on the Data Bank system?
 

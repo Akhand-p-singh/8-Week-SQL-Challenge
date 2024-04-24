@@ -1,5 +1,5 @@
 
-# Case Study #8: Fresh Segments
+# 📈 Case Study #8: Fresh Segments
 
 ### A. Data Exploration and Cleansing
 ---

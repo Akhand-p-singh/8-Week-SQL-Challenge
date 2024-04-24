@@ -1,5 +1,5 @@
 
-# Case Study #4: Data Bank
+# 🏦 Case Study #4: Data Bank
 
 ### A. Customer Nodes Exploration
 
@@ -65,3 +65,4 @@ order by region_id
 ---
 
 ### **Q5. What is the median, 80th and 95th percentile for this same reallocation days metric for each region?**
+---

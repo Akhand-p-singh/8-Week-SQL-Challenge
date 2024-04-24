@@ -1,5 +1,5 @@
 
-# Case Study #4: Data Bank
+# 🏦 Case Study #4: Data Bank
 
 ### B. Customer Transactions
 
@@ -82,3 +82,5 @@ ORDER BY month;
 ---
 
 ### **Q5. What is the percentage of customers who increase their closing balance by more than 5%?**
+
+---

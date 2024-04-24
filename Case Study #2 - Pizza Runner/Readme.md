@@ -1,10 +1,10 @@
-#  Case Study #2 - Pizza Runner
+# 🍕 Case Study #2 - Pizza Runner
 
 ![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%202.png)
   
 
 ---
-## 🛠️ Bussiness Task
+## 🛠️ Problem Statement
 
 Danny was scrolling through his Instagram feed when something really caught his eye - “80s Retro Styling and Pizza Is The Future!”
 
@@ -20,64 +20,64 @@ Danny started by recruiting “runners” to deliver fresh pizza from Pizza Runn
 
 ----
 
-## About Dataset :-
+## 💾 About Dataset :-
 
 
 ### Table 1: runners 
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/2.%20runners.png)
 
-The runners table shows the registration_date for each new runner
+* The runners table shows the registration_date for each new runner
 
 ----
 
 ### Table 2: customer_orders
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/2.%20customer_orders.png)
 
-Customer pizza orders are captured in the customer_orders table with 1 row for each individual pizza that is part of the order.
+* Customer pizza orders are captured in the customer_orders table with 1 row for each individual pizza that is part of the order.
 
-The pizza_id relates to the type of pizza which was ordered whilst the exclusions are the ingredient_id values which should be removed from the pizza and the extras are the ingredient_id values which need to be added to the pizza.
+* The pizza_id relates to the type of pizza which was ordered whilst the exclusions are the ingredient_id values which should be removed from the pizza and the extras are the ingredient_id values which need to be added to the pizza.
 
-Note that customers can order multiple pizzas in a single order with varying exclusions and extras values even if the pizza is the same type!
+* Note that customers can order multiple pizzas in a single order with varying exclusions and extras values even if the pizza is the same type!
 
-The exclusions and extras columns will need to be cleaned up before using them in your queries.
+* The exclusions and extras columns will need to be cleaned up before using them in your queries.
 
 ---
 ### Table 3: runner_orders
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/2.%20runner_orders.png)
 
-After each orders are received through the system - they are assigned to a runner - however not all orders are fully completed and can be cancelled by the restaurant or the customer.
+* After each orders are received through the system - they are assigned to a runner - however not all orders are fully completed and can be cancelled by the restaurant or the customer.
 
-The pickup_time is the timestamp at which the runner arrives at the Pizza Runner headquarters to pick up the freshly cooked pizzas. The distance and duration fields are related to how far and long the runner had to travel to deliver the order to the respective customer.
+* The pickup_time is the timestamp at which the runner arrives at the Pizza Runner headquarters to pick up the freshly cooked pizzas. The distance and duration fields are related to how far and long the runner had to travel to deliver the order to the respective customer.
 
 ---
 
 ### Table 4: pizza_names
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/2.%20pizza_names.png)
 
-At the moment - Pizza Runner only has 2 pizzas available the Meat Lovers or Vegetarian!
+* At the moment - Pizza Runner only has 2 pizzas available the Meat Lovers or Vegetarian!
 
 ---
 
 ### Table 5: pizza_recipes
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/2.%20pizza_recipes.png)
 
-Each pizza_id has a standard set of toppings which are used as part of the pizza recipe.
+* Each pizza_id has a standard set of toppings which are used as part of the pizza recipe.
 
 ---
 
 ### Table 6: pizza_toppings
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/2.%20pizza_toppings.png)
 
-This table contains all of the topping_name values with their corresponding topping_id value
+* This table contains all of the topping_name values with their corresponding topping_id value
 
 ---
-## Case Study Questions
+## 🔍 Case Study Questions
 
 ### A.  Pizza Metrics
 

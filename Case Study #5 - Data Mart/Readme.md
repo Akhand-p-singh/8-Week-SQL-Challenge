@@ -1,4 +1,4 @@
-#  Case Study #5 - Data Mart
+# 🛍️ Case Study #5 - Data Mart
 
 ![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%205.png)
   
@@ -19,18 +19,18 @@ Which platform, region, segment and customer types were the most impacted by thi
 What can we do about future introduction of similar sustainability updates to the business to minimise impact on sales?
 
 ---
-##  Entity Relationship Diagram
+## 💡 Entity Relationship Diagram
 
 ![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/er5.png)
 
 ----
 
-## Dataset :-
+## 💾  About Dataset
 
 
 ### Table 1: data_mart.weekly_sales
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/5.png)
 
 * Data Mart has international operations using a multi-region strategy
 
@@ -42,7 +42,7 @@ What can we do about future introduction of similar sustainability updates to th
 
 ---
 
-## Case Study Questions
+## 🔍 Case Study Questions
 
 ### A. Data Cleansing Steps
 

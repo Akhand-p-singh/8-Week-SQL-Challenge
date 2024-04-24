@@ -1,6 +1,6 @@
 
-# Case Study #2:  Runner and Customer Experience
----
+# 🍕 Case Study #2:  Pizza Runner
+
 ### B. Runner and Customer Experience
 ---
 ## 🚀 Solutions

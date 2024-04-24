@@ -1,4 +1,4 @@
-#  Case Study #6 - Clique Bait
+#  🦐 Case Study #6 - Clique Bait
 
 ![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Case%20Study%206.png)
   
@@ -12,12 +12,12 @@ questions.
 
 ----
 
-## Dataset :-
+## 💾  About Dataset
 
 
 ### Table 1: Users
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/6.%20users.png)
 
 * Customers who visit the Clique Bait website are tagged via their cookie_id.
 
@@ -25,7 +25,7 @@ questions.
 
 ### Table 2: Events
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/6.%20events.png)
 
 * Customer visits are logged in this events table at a cookie_id level and the event_type and page_id values can be used to join onto relevant satellite tables to obtain further information about each event.
 
@@ -34,7 +34,7 @@ questions.
 
 ### Table 3: Event Identifier
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/6.%20event%20identifier.png)
 
 * The event_identifier table shows the types of events which are captured by Clique Bait’s digital data systems.
 
@@ -42,19 +42,19 @@ questions.
 
 ### Table 4: Campaign Identifier
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/6.%20%20campaign%20identifier.png)
 
 * This table shows information for the 3 campaigns that Clique Bait has ran on their website so far in 2020.
 ----
 
 ### Table 5: Page Hierarchy
 
-![App Screenshot](Add Table image)
+![App Screenshot](https://raw.githubusercontent.com/Akhand-p-singh/8-Week-SQL-Challenge/master/Images/Table%20image/6.%20page%20heirarcy.png)
 
 * This table lists all of the pages on the Clique Bait website which are tagged and have data passing through from user interaction events.
 
 ---
-## Case Study Questions
+## 🔍 Case Study Questions
 ### A. Enterprise Relationship Diagram
 
 * Using the following DDL schema details to create an ERD for all the Clique Bait datasets.
